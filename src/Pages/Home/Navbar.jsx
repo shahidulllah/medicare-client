@@ -37,15 +37,6 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/availableCamps'>Available Camps</NavLink></li>
         <li><NavLink to='/join'>Join Us</NavLink></li>
-        {
-            user &&
-            <>
-                <li><NavLink to='/createAssignment'>Create Assignments</NavLink></li>
-                <li><NavLink to='/pendingAssignment'>Pending Assignments</NavLink></li>
-            </>
-        }
-
-
     </>
     return (
         <div className=" lg:p-2 bg-green-300/50 sticky top-0 z-50">
@@ -99,8 +90,12 @@ const Navbar = () => {
                                                 <img src={user?.photoURL || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"} className="rounded-full" alt="" />
                                             </div>
                                         </div>
-                                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-300 rounded-box w-52">
-                                            <Link to="/myAssignment"> <li className="border-slate-300 border-b"><button>Dashboard</button></li></Link>
+                                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-lg bg-green-300/70 rounded-box w-52">
+                                            <div className="font-bold">
+                                                <h1 className="border-b border-green-600 p-2 text-lg">{user?.displayName}</h1>
+                                            </div>
+                                            
+                                            <Link to="/myAssignment"> <li className="border-green-500 border-b"><button>Dashboard</button></li></Link>
                                             <li><button onClick={handleLogOut}>Log Out</button></li>
                                         </ul>
                                     </div>
