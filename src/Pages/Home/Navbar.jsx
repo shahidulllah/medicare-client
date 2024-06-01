@@ -109,7 +109,7 @@ const Navbar = () => {
                                 <div tabIndex={0} role="button" className="btn m-1"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-800">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                                 </svg></div>
-                                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-300 rounded-box w-52 border-slate-300 border-b">
+                                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-green-300 rounded-box w-52 border-slate-300 border-b">
                                     {
                                         user && <div className="flex flex-col items-center justify-center">
                                             <div className=" w-9 mb-2 ">
@@ -121,7 +121,7 @@ const Navbar = () => {
                                         </div>
                                     }
                                     {navlinks}
-                                    {user && <li><button>My Assignments</button></li>}
+                                    {user && <li><button>Dashboard</button></li>}
                                     {!user &&
                                         <li><Link to="/login">Login</Link></li>}
                                     {user && <li><button onClick={handleLogOut}>Log Out</button></li>}
