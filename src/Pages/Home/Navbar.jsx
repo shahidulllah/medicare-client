@@ -39,7 +39,7 @@ const Navbar = () => {
         <li><NavLink to='/join'>Join Us</NavLink></li>
     </>
     return (
-        <div className=" lg:p-2 bg-green-300/50 sticky top-0 z-50">
+        <div className=" lg:p-2 bg-green-300 sticky top-0 z-50">
             <div className="text-center p-4 lg:mx-24">
                 <header className="p-3">
                     <div className="container flex justify-between h-12 mx-auto ">
