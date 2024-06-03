@@ -5,6 +5,7 @@ import Root from "../Root/Root";
 import Login from "../Pages/LoginPage/Login";
 import Register from "../Pages/RegisterPage/Register";
 import Details from "../Pages/DetailsPage/Details";
+import ParticipantInfo from "../Components/CollectInfo/ParticipantInfo";
 
 
 export const router = createBrowserRouter([
@@ -20,6 +21,11 @@ export const router = createBrowserRouter([
             {
                 path: "/details/:id",
                 element: <Details></Details>,
+                loader: () => fetch(`${import.meta.env.VITE_API_URL}/camps`)
+            },
+            {
+                path: "/participentInfo/:id",
+                element: <ParticipantInfo></ParticipantInfo>,
                 loader: () => fetch(`${import.meta.env.VITE_API_URL}/camps`)
             },
         ]

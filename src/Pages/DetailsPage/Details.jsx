@@ -9,6 +9,7 @@ import { RiPriceTagLine } from "react-icons/ri";
 import { TbListDetails } from "react-icons/tb";
 
 
+
 const Details = () => {
     const camps = useLoaderData();
     const { id } = useParams();
@@ -52,8 +53,11 @@ const Details = () => {
 
                     </div>
                     <div>
-                        <Link to={`/details/${detailsCamp._id}`}> <button type="button" className="flex btn  items-center justify-center w-full p-3 font-extrabold tracking-wide rounded-md  bg-green-400 hover:bg-green-500 mt-12"><span className='text-blue-600'><TbListDetails className='text-xl' /></span>Join Camp</button></Link>
+                     <Link  to={`/participentInfo/${detailsCamp._id}`}>
+                     <button  type="button" className="flex btn  items-center justify-center w-full p-3 font-extrabold tracking-wide rounded-md  bg-green-400 hover:bg-green-500 mt-12"><span className='text-blue-600'><TbListDetails className='text-xl' /></span>Join Camp</button>
+                     </Link>
                     </div>
+                    
                 </CardBody>
             </Card>
         </div>
