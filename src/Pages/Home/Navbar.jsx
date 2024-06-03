@@ -95,7 +95,7 @@ const Navbar = () => {
                                                 <h1 className="border-b border-green-600 p-2 text-lg">{user?.displayName}</h1>
                                             </div>
                                             
-                                            <Link to="/myAssignment"> <li className="border-green-500 border-b"><button>Dashboard</button></li></Link>
+                                            <Link to="/dashboard"> <li className="border-green-500 border-b"><button>Dashboard</button></li></Link>
                                             <li><button onClick={handleLogOut}>Log Out</button></li>
                                         </ul>
                                     </div>
@@ -121,7 +121,7 @@ const Navbar = () => {
                                         </div>
                                     }
                                     {navlinks}
-                                    {user && <li><button>Dashboard</button></li>}
+                                    {user && <Link to="/dashboard"><li><button>Dashboard</button></li></Link>}
                                     {!user &&
                                         <li><Link to="/login">Login</Link></li>}
                                     {user && <li><button onClick={handleLogOut}>Log Out</button></li>}

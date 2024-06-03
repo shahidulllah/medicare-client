@@ -6,6 +6,8 @@ import Login from "../Pages/LoginPage/Login";
 import Register from "../Pages/RegisterPage/Register";
 import Details from "../Pages/DetailsPage/Details";
 import ParticipantInfo from "../Components/CollectInfo/ParticipantInfo";
+import Available from "../Pages/AvailableCamps/Available";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 
 
 export const router = createBrowserRouter([
@@ -27,6 +29,15 @@ export const router = createBrowserRouter([
                 path: "/participentInfo/:id",
                 element: <ParticipantInfo></ParticipantInfo>,
                 loader: () => fetch(`${import.meta.env.VITE_API_URL}/camps`)
+            },
+            {
+                path: "/availableCamps",
+                element: <Available></Available>,
+                loader: () => fetch(`${import.meta.env.VITE_API_URL}/camps`)
+            },
+            {
+                path: "/dashboard",
+                element: <Dashboard></Dashboard>,
             },
         ]
     },
