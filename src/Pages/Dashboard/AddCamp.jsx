@@ -4,6 +4,7 @@ import DateTimePicker from 'react-datetime-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
+import Swal from "sweetalert2";
 const AddCamp = () => {
     const { register, handleSubmit, control, formState: { errors } } = useForm();
     const [value, setValue] = useState(new Date());
@@ -17,11 +18,36 @@ const AddCamp = () => {
             minute: '2-digit',
             hour12: true,
         });
-        console.log({
+        const campData = {
             ...data,
             DateAndTime: formattedDate
-        });
+        }
+        console.log(campData);
+
+
+         //send assignment to server
+         fetch(`${import.meta.env.VITE_API_URL}/camps`, {
+            method: 'POST',
+            headers: {
+             'content-type' : 'application/json'
+            },
+            body: JSON.stringify(campData) 
+         })
+         .then(res => res.json())
+         .then (data => {
+             console.log(data)
+             if (data.insertedId) {
+                 Swal.fire({
+                     title: 'Success!',
+                     text: 'Camp is added Successfully!',
+                     icon: 'success',
+                     confirmButtonText: 'Done'
+                 })
+                
+             }
+         })
     };
+   
 
     return (
         <div className="p-4">
@@ -40,7 +66,7 @@ const AddCamp = () => {
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="image" className="text-sm">Image</label>
-                                <input id="image" {...register("Image",{ required: true })} type="text" placeholder="Image URL" className="w-full input rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
+                                <input id="image" {...register("Image",{ required: true })}  type="text" placeholder="Image URL" className="w-full input rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
                                 {errors.Image && <span className="text-black">This field is required..!</span>}
                             </div>
                             <div className="col-span-full sm:col-span-3">
