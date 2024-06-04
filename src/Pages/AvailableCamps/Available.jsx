@@ -8,7 +8,7 @@ const Available = () => {
     const camps = useLoaderData();
 
     return (
-       <div className="px-4 lg:mx-24">
+        <div className="px-4 lg:mx-24">
             <SectionTitle
                 heading={"Available Medical Camps"}
                 description={'Objectively optimize intermandated quality vectors after efficient expertise. Competently architect multidisciplinary "outside the box" thinking before cooperative users. Appropriately promote fully.'}
@@ -22,7 +22,11 @@ const Available = () => {
                             <div className="flex flex-col justify-between p-6 space-y-8">
                                 <div className="space-y-2">
                                     <h2 className="text-3xl font-semibold tracking-wide text-green-600 font-roboto">{camp.CampName}</h2>
+                                    <div>
+                                        {camp.Description}
+                                    </div>
                                 </div>
+
                                 <div className='space-y-1'>
                                     <div className='flex items-center justify-between font-roboto'>
                                         <div className="flex items-center"><RiPriceTagLine className='mr-2'></RiPriceTagLine> <span className='font-bold mr-2'>Professional:</span> <span className=''>{camp.HealthcareProfessional}</span></div>
@@ -39,7 +43,7 @@ const Available = () => {
                                     <div className='flex items-center justify-between font-roboto'>
                                         <div className="flex items-center"><RiPriceTagLine className='mr-2'></RiPriceTagLine> <span className='font-bold mr-2'>Address:</span> <span className=''>{camp.Location}</span></div>
                                     </div>
-                                    
+
                                 </div>
                                 <div>
                                     <Link to={`/details/${camp._id}`}> <button type="button" className="flex btn  items-center justify-center w-full p-3 font-extrabold tracking-wide rounded-md  bg-green-400 hover:bg-green-500"><span className='text-blue-600'><TbListDetails className='text-xl' /></span>Details</button></Link>
