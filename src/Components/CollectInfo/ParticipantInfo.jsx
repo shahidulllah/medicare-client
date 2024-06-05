@@ -31,7 +31,7 @@ const ParticipantInfo = () => {
         const participantInfo = {campName,professional,location, fees,phone, name, email, age, gender, contact}
         console.log(participantInfo);
 
-          //send assignment to server
+          //send Participant info to server
           fetch(`${import.meta.env.VITE_API_URL}/participants`, {
             method: 'POST',
             headers: {

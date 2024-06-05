@@ -3,11 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../Components/AuthProvider/AuthProvider";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 
 
 const Register = () => {
+    const axiosPublic = useAxiosPublic();
     const { createUser, updateUser} = useContext(AuthContext);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('')
@@ -48,21 +50,26 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 console.log(result.user);
-                setSuccess('Registration Complete..')
-                Swal.fire({
-                    title: "Good job!",
-                    text: "Your registration is Successfull..!",
-                    icon: "success"
-                });
-                navigate('/login');
-
                 updateUser(name, photoUrl)
                     .then(() => console.log('profile updated'))
-                    .catch()
-            })
-            .catch(error => {
-                console.error(error);
-
+                    // Enter the user to database
+                    const userData = {
+                        name: name,
+                        email: email
+                    }
+                    axiosPublic.post('/users', userData)
+                    .then(res => {
+                        if(res.data.insertedId){
+                            console.log('User added to database');
+                            form.reset();
+                            Swal.fire({
+                                title: "Good job!",
+                                text: "Your registration is Successfull..!",
+                                icon: "success"
+                            });
+                            navigate('/login');
+                        }
+                    })          
             })
     }
 
