@@ -3,10 +3,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../Components/AuthProvider/AuthProvider";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 
 const Login = () => {
+    const axiosPublic = useAxiosPublic();
     const {loginUser, googleLogin} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -21,8 +23,6 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
-        // setLoginError('');
-        // setLoginSuccess('');
 
         // Login Authentication
         loginUser(email, password)
@@ -36,12 +36,6 @@ const Login = () => {
             .catch(error => {
                 console.log(error.message);
                 setLoginError('Email and password is not correct..!');
-                // Swal.fire({
-                //     icon: "error",
-                //     title: "Oops...",
-                //     text: "Email and password is not correct!",
-                //     footer: '<a href="#">Why do I have this issue?</a>'
-                // });
             })
     }
 
@@ -50,10 +44,15 @@ const Login = () => {
         googleLogin()
             .then(result => {
                 console.log(result.user);
-                navigate(location?.state ? location.state : '/');
-            })
-            .catch(error => {
-                console.error(error);
+                const userData = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post('/users', userData)
+                .then(res => {
+                    console.log(res.data);
+                    navigate(location?.state ? location.state : '/');
+                })  
             })
     }
 
