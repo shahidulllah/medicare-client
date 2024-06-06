@@ -46,14 +46,13 @@ const AddCamp = () => {
 
     return (
         <div className="p-4">
-            <section className="lg:p-24 text-gray-50 mb-8">
+            <section className="lg:p-8 text-gray-50 mb-8 flex justify-center">
                 <form onSubmit={handleSubmit(onSubmit)} noValidate className="container flex flex-col mx-auto space-y-12">
                     <fieldset className="grid grid-cols-4 gap-6 p-6 lg:p-16 rounded-md shadow-sm bg-green-700">
-                        <div className="space-y-2 col-span-full lg:col-span-1">
+                        <div className=" col-span-full ">
                             <p className="font-medium text-3xl">Add a Camp</p>
-                            <p className="text-xs">Credibly create dynamic assignment after long-term high-impact infrastructures. Synergistically provide.</p>
                         </div>
-                        <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+                        <div className="grid grid-cols-6 gap-4 col-span-full ">
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="campName" className="text-sm">Camp Name</label>
                                 <input id="campName" {...register("CampName", { required: true })} type="text" placeholder="Camp Name" className="w-full input rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
@@ -92,14 +91,14 @@ const AddCamp = () => {
                                                 setValue(date);
                                                 field.onChange(date);
                                             }}
-                                            value={value}
+
                                         />
                                     )}
                                 />
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="participantCount" className="text-sm">Participant Count</label>
-                                <input id="participantCount" type="text" {...register("ParticipantCount", { required: true })} className="w-full rounded-md focus:ring focus:ring-opacity-75 input text-gray-900 focus:ring-violet-400 border-gray-700" />
+                                <input id="participantCount" type="text" {...register("ParticipantCount", { required: true })} className="w-full rounded-md focus:ring focus:ring-opacity-75 input text-gray-900 focus:ring-violet-400 border-gray-700" defaultValue={0} />
                                 {errors.ParticipantCount && <span className="text-black">This field is required..!</span>}
                             </div>
                             <div className="col-span-full sm:col-span-3">
