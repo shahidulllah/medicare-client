@@ -39,9 +39,9 @@ const ManageCamps = () => {
         });
     }
     return (
-        <div className="p-4 lg:mx-12 lg:p-6 w-full ">
-            <div className="container p-4 lg:p-5 mx-auto text-blue-400 bg-gray-200 rounded-lg">
-                <h2 className="mb-5 text-3xl text-center font-semibold text-green-600 leading-tight ">Manage Camps ({campData.length})</h2>
+        <div className="p-4 lg:mx-12 lg:p-2 w-full flex justify-center">
+            <div className="container p-4 lg:p-12 mx-auto text-blue-400 bg-gray-200 rounded-lg">
+                <h2 className="mb-5 text-3xl text-center font-semibold text-green-600 leading-tight  -mt-6">Manage Camps ({campData.length})</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-sm">
                         <colgroup>
@@ -51,8 +51,8 @@ const ManageCamps = () => {
                             <col />
                             <col />
                         </colgroup>
-                        <thead className="bg-gray-700">
-                            <tr className="text-center font-bold text-slate-400">
+                        <thead className="bg-green-700">
+                            <tr className="text-center font-bold text-slate-300">
                                 <th className="p-3 text-left">Name</th>
                                 <th className="p-3">Healthcare Professional</th>
                                 <th className="p-3">Location</th>
@@ -63,7 +63,7 @@ const ManageCamps = () => {
                         </thead>
                         <tbody>
                             {
-                                campData.map(camp => <tr key={camp._id} className="border-b border-opacity-20 border-gray-700 bg-gray-900">
+                                campData.map(camp => <tr key={camp._id} className="border-b border-opacity-20 border-green-700 bg-gray-900">
                                     <td className="p-3 text-left">
                                         <p className="text-purple-500 font-semibold">{camp.CampName}</p>
                                     </td>

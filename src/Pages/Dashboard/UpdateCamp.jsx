@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
 import { Controller, useForm } from "react-hook-form";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
@@ -10,7 +10,8 @@ const UpdateCamp = () => {
     const campData = useLoaderData()
     const { register, handleSubmit, control,reset, formState: { errors } } = useForm();
     const [value, setValue] = useState(new Date());
-    const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate()
 
     const onSubmit = (data) => {
         const formattedDate = value.toLocaleString('en-US', {
@@ -35,16 +36,17 @@ const UpdateCamp = () => {
                     reset();
                     Swal.fire({
                         title: 'Success!',
-                        text: 'Camp is Updated!',
+                        text: 'Camp is Updated Successfully!',
                         icon: 'success',
                         confirmButtonText: 'Done'
                     })
+                    navigate('/dashboard/manageCamps')
                 }
             })
     }
     return (
         <div>
-            <div className="p-4">
+            <div className="p-4 ">
                 <section className="lg:p-8 text-gray-50 mb-8 flex justify-center">
                     <form onSubmit={handleSubmit(onSubmit)} noValidate className="container flex flex-col mx-auto space-y-12">
                         <fieldset className="grid grid-cols-4 gap-6 p-6 lg:p-16 rounded-md shadow-sm bg-green-700">

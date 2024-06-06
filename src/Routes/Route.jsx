@@ -13,6 +13,7 @@ import AddCamp from "../Pages/Dashboard/AddCamp";
 import PrivateRoute from "./PrivateRoute";
 import ManageCamps from "../Pages/Dashboard/ManageCamps";
 import UpdateCamp from "../Pages/Dashboard/UpdateCamp";
+import RegisteredCamps from "../Pages/Dashboard/RegisteredCamps";
 
 
 export const router = createBrowserRouter([
@@ -71,7 +72,10 @@ export const router = createBrowserRouter([
                 element: <UpdateCamp></UpdateCamp>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/camps/${params.id}`)
             },
-           
+            {
+                path: "/dashboard/RegisteredCamps",
+                element: <RegisteredCamps></RegisteredCamps>
+            },
         ]
     },
 ])
