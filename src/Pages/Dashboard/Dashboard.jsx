@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 
 const Dashboard = () => {
-    const isAdin = true;
+    const isAdin = false;
     return (
         <div className="bg-green-300           ">
             <div className="flex px-4 mx-24 ">
@@ -41,20 +41,21 @@ const Dashboard = () => {
                                         <FaManatSign></FaManatSign>
                                         Manage Camps</li></NavLink>
 
-                                    <NavLink to="/dashboard/RegisteredCamps"><li className="flex items-center gap-2 my-2">
+                                    <NavLink to="/dashboard/manageRegCamps"><li className="flex items-center gap-2 my-2">
                                         <FaCampground></FaCampground>
                                         Manage Registered Camps</li></NavLink>
                                 </>
                                 :
                                 <>
-                                    <NavLink to="/dashboard/participantProfile"><li className="flex items-center gap-2 my-2">
-                                        <FaPersonRifle></FaPersonRifle>
-                                        Participant Profile</li></NavLink>
 
                                     <NavLink to="/dashboard/analytics"><li className="flex items-center gap-2 my-2">
                                         <FaAddressBook></FaAddressBook>
                                         Analytics</li>
                                     </NavLink>
+
+                                    <NavLink to="/dashboard/participantProfile"><li className="flex items-center gap-2 my-2">
+                                        <FaPersonRifle></FaPersonRifle>
+                                        Participant Profile</li></NavLink>
 
                                     <NavLink to="/dashboard/registeredCamps"><li className="flex items-center gap-2 my-2">
                                         <FaManatSign></FaManatSign>

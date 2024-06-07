@@ -14,6 +14,7 @@ import PrivateRoute from "./PrivateRoute";
 import ManageCamps from "../Pages/Dashboard/ManageCamps";
 import UpdateCamp from "../Pages/Dashboard/UpdateCamp";
 import RegisteredCamps from "../Pages/Dashboard/RegisteredCamps";
+import Analytics from "../Pages/Dashboard/UserDashboard/Analytics";
 
 
 export const router = createBrowserRouter([
@@ -55,6 +56,8 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+
+            // Organizer
             {
                 path: "/dashboard/organizerProfile",
                 element: <Profile></Profile>
@@ -73,8 +76,18 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/camps/${params.id}`)
             },
             {
-                path: "/dashboard/RegisteredCamps",
+                path: "/dashboard/manageRegCamps",
                 element: <RegisteredCamps></RegisteredCamps>
+            },
+            
+            // Participants
+            {
+                path: "/dashboard/participantProfile",
+                element: <Profile></Profile>
+            },
+            {
+                path: "/dashboard/analytics",
+                element: <Analytics></Analytics>
             },
         ]
     },

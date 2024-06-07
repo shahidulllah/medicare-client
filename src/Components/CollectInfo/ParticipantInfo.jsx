@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -12,7 +12,7 @@ const ParticipantInfo = () => {
     const {user} = useContext(AuthContext)
     console.log(camps);
     const { CampName, HealthcareProfessional, Location, CampFees } = detailsCamp;
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleInfo = e => {
         e.preventDefault();
@@ -50,7 +50,7 @@ const ParticipantInfo = () => {
                      confirmButtonText: 'Done'
                  })
                  form.reset()
-                //  navigate('/')
+                 navigate('/availableCamps')
              }
          })
     }
