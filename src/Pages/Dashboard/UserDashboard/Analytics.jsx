@@ -41,9 +41,9 @@ const Analytics = () => {
                 }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="campName" />
+                <XAxis dataKey="CampName" />
                 <YAxis />
-                <Bar dataKey="fees" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+                <Bar dataKey="CampFees" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
                     {participantData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={colors[index % 20]} />
                     ))}

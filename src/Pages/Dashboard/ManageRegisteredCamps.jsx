@@ -3,7 +3,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 
 
-const RegisteredCamps = () => {
+const ManageRegisteredCamps = () => {
     const [participantData, setParticipantData] = useState([])
     const axiosSecure = useAxiosSecure();
     axiosSecure.get('/participants')
@@ -39,13 +39,13 @@ const RegisteredCamps = () => {
                             {
                                 participantData.map(camp => <tr key={camp._id} className="border-b border-opacity-20 border-green-700 bg-gray-900">
                                     <td className="p-3 text-left">
-                                        <p className="text-purple-500 font-semibold">{camp.name}</p>
+                                        <p className="text-purple-500 font-semibold">{camp.UserName}</p>
                                     </td>
                                     <td className="p-3 text-center">
-                                        <p>{camp.campName}</p>
+                                        <p>{camp.CampName}</p>
                                     </td>
                                     <td className="p-3 text-center">
-                                        <p>{camp.fees}</p>
+                                        <p>$ {camp.CampFees}</p>
                                     </td>
 
                                     <td className="p-3 text-center">
@@ -67,4 +67,4 @@ const RegisteredCamps = () => {
     );
 };
 
-export default RegisteredCamps;
+export default ManageRegisteredCamps;

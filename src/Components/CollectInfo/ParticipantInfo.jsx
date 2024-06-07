@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const ParticipantInfo = () => {
+    const axiosPublic = useAxiosPublic()
     const camps = useLoaderData();
     const {id} = useParams();
     const detailsCamp = camps.find(camp => camp._id == id);
@@ -17,32 +19,21 @@ const ParticipantInfo = () => {
     const handleInfo = e => {
         e.preventDefault();
         const form = e.target;
-        const campName = CampName;
-        const professional = HealthcareProfessional;
-        const location = Location;
-        const fees = CampFees;
-        const name = user.displayName;
-        const email = user.email;
-        const age = form.age.value;
-        const phone = form.phone.value
-        const gender = form.gender.value;
-        const contact = form.contact.value;
+        const UserName = user.displayName;
+        const Email = user.email;
+        const Age = form.age.value;
+        const Phone = form.phone.value
+        const Gender = form.gender.value;
+        const Contact = form.contact.value;
 
-        const participantInfo = {campName,professional,location, fees,phone, name, email, age, gender, contact}
+        const participantInfo = {CampName,HealthcareProfessional,Location, CampFees,Phone, UserName, Email, Age, Gender, Contact}
         console.log(participantInfo);
 
           //send Participant info to server
-          fetch(`${import.meta.env.VITE_API_URL}/participants`, {
-            method: 'POST',
-            headers: {
-             'content-type' : 'application/json'
-            },
-            body: JSON.stringify(participantInfo) 
-         })
-         .then(res => res.json())
-         .then (data => {
-             console.log(data)
-             if (data.insertedId) {
+         axiosPublic.post('/participants', participantInfo)
+         .then (res => {
+             console.log(res.data)
+             if (res.data.insertedId) {
                  Swal.fire({
                      title: 'Success!',
                      text: 'Participation Successful!',

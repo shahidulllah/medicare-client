@@ -13,8 +13,9 @@ import AddCamp from "../Pages/Dashboard/AddCamp";
 import PrivateRoute from "./PrivateRoute";
 import ManageCamps from "../Pages/Dashboard/ManageCamps";
 import UpdateCamp from "../Pages/Dashboard/UpdateCamp";
-import RegisteredCamps from "../Pages/Dashboard/RegisteredCamps";
 import Analytics from "../Pages/Dashboard/UserDashboard/Analytics";
+import ManageRegisteredCamps from "../Pages/Dashboard/ManageRegisteredCamps";
+import RegisteredCamps from "../Pages/Dashboard/UserDashboard/RegisteredCamps";
 
 
 export const router = createBrowserRouter([
@@ -77,7 +78,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/manageRegCamps",
-                element: <RegisteredCamps></RegisteredCamps>
+                element: <ManageRegisteredCamps></ManageRegisteredCamps>
             },
             
             // Participants
@@ -88,6 +89,10 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/analytics",
                 element: <Analytics></Analytics>
+            },
+            {
+                path: "/dashboard/registeredCamps",
+                element: <RegisteredCamps></RegisteredCamps>
             },
         ]
     },
