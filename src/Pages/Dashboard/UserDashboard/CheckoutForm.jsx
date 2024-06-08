@@ -19,10 +19,9 @@ const CheckoutForm = () => {
     const [participantData] = useParticipantData();
     const { id } = useParams()
     const payAbleCamp = participantData.find(camp => camp._id == id);
+    const CampName = payAbleCamp.CampName;
     const campId = payAbleCamp._id
     const price = payAbleCamp.CampFees;
-    // console.log(payAbleCamp)
-    // console.log(price);
 
 
     useEffect(() => {
@@ -87,19 +86,21 @@ const CheckoutForm = () => {
                 console.log('Transaction Id: ', paymentIntent.id);
                 setTransactionId(paymentIntent.id);
 
-
                 // Save the payment in the database
                 const payment = {
-                    email: user.email,
-                    transactionId: paymentIntent.id,
-                    fees : price,
-                    date: new Date(),
-                    campId: campId,
-                    status: 'Pending'
+                    CampName: CampName,
+                    Email: user.email,
+                    TransactionId: paymentIntent.id,
+                    CampFees : price,
+                    Date: new Date(),
+                    CampId: campId,
+                    PaymentStatus: 'Paid',
+                    ConfirmationStatus: 'Pending',
                 }
                const res = await axiosSecure.post('/payments', payment)
                console.log('Payment saved',res);
             }
+            
         }
     };
 
