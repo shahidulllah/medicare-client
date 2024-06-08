@@ -1,16 +1,10 @@
-import { useState } from "react";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useParticipantData from "../../Hooks/useParticipantData";
+
 
 
 
 const ManageRegisteredCamps = () => {
-    const [participantData, setParticipantData] = useState([])
-    const axiosSecure = useAxiosSecure();
-    axiosSecure.get('/participants')
-    .then(res =>{
-        console.log(res.data);
-        setParticipantData(res.data)
-    })
+    const [participantData] = useParticipantData();
 
     return (
         <div className="p-4 lg:mx-12 lg:p-2 w-full flex justify-center">

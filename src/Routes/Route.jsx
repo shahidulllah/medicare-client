@@ -17,6 +17,7 @@ import Analytics from "../Pages/Dashboard/UserDashboard/Analytics";
 import ManageRegisteredCamps from "../Pages/Dashboard/ManageRegisteredCamps";
 import RegisteredCamps from "../Pages/Dashboard/UserDashboard/RegisteredCamps";
 import Payment from "../Pages/Dashboard/UserDashboard/Payment";
+import PaymentHistory from "../Pages/Dashboard/UserDashboard/PaymentHistory";
 
 
 export const router = createBrowserRouter([
@@ -96,8 +97,12 @@ export const router = createBrowserRouter([
                 element: <RegisteredCamps></RegisteredCamps>
             },
             {
-                path: "/dashboard/payment",
+                path: "/dashboard/payment/:id",
                 element: <Payment></Payment>
+            },
+            {
+                path: "/dashboard/paymentHistory",
+                element: <PaymentHistory></PaymentHistory>
             },
         ]
     },

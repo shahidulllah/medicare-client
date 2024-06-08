@@ -1,11 +1,39 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useParticipantData from "../../../Hooks/useParticipantData";
+import { useParams } from "react-router-dom";
+import { AuthContext } from "../../../Components/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const CheckoutForm = () => {
-    const [error, setError] = useState('')
+    const { user } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const [clientSecret, setClientSecret] = useState('');
+    const [transactionId, setTransactionId] = useState('');
+
     const stripe = useStripe();
     const elements = useElements();
+    const axiosSecure = useAxiosSecure();
+    const [participantData] = useParticipantData();
+    const { id } = useParams()
+    const payAbleCamp = participantData.find(camp => camp._id == id);
+    const campId = payAbleCamp._id
+    const price = payAbleCamp.CampFees;
+    // console.log(payAbleCamp)
+    // console.log(price);
+
+
+    useEffect(() => {
+      if(price > 0){
+        axiosSecure.post('/create-payment-intent', { price: price })
+        .then(res => {
+            console.log(res.data.clientSecret);
+            setClientSecret(res.data.clientSecret)
+        })
+      }
+    }, [axiosSecure, price])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -19,7 +47,7 @@ const CheckoutForm = () => {
             return;
         }
 
- 
+
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card,
@@ -31,6 +59,47 @@ const CheckoutForm = () => {
         } else {
             console.log('[PaymentMethod]', paymentMethod);
             setError('');
+        }
+
+        // Confirm payment
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    email: user?.email || "Anonymous",
+                    name: user?.displayName || "Anonymous"
+                }
+            }
+        })
+        if (confirmError) {
+            console.log('Confirm Error')
+        } else {
+            console.log('PaymentIntent', paymentIntent)
+            if (paymentIntent.status === "succeeded") {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Payment Successfull..!",
+                    text: `Transaction ID: ${paymentIntent.id}`,
+                    showConfirmButton: false,
+                    timer: 6500
+                });
+                console.log('Transaction Id: ', paymentIntent.id);
+                setTransactionId(paymentIntent.id);
+
+
+                // Save the payment in the database
+                const payment = {
+                    email: user.email,
+                    transactionId: paymentIntent.id,
+                    fees : price,
+                    date: new Date(),
+                    campId: campId,
+                    status: 'Pending'
+                }
+               const res = await axiosSecure.post('/payments', payment)
+               console.log('Payment saved',res);
+            }
         }
     };
 
@@ -53,12 +122,13 @@ const CheckoutForm = () => {
                         },
                     }}
                 />
-                <div className="-mb-8 mt-9  card-body">
-                    <button className="px-5 py-1 btn bg-green-500 font-semibold text-xl" type="submit" disabled={!stripe}>
+                <div className="-mb-16 mt-16  card-body">
+                    <button className="px-5 py-1 btn bg-green-500 font-semibold text-xl" type="submit" disabled={!stripe || !clientSecret}>
                         Pay
                     </button>
                     <p className="text-red-600 py-2">{error}</p>
                 </div>
+                {transactionId && <p className="text-green-600 mt-6"><span className="font-bold">Your transaction Id:</span> {transactionId}</p>}
             </form>
         </div>
     );

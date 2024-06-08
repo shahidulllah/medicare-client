@@ -1,21 +1,15 @@
-import { useState } from "react";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import useParticipantData from "../../../Hooks/useParticipantData";
 
 
 
 const RegisteredCamps = () => {
-    const [participantData, setParticipantData] = useState([])
-    const axiosSecure = useAxiosSecure();
-    axiosSecure.get('/participants')
-        .then(res => {
-            console.log(res.data);
-            setParticipantData(res.data)
-        })
+  const [participantData] = useParticipantData();
+  console.log(participantData);
     return (
         <div className="p-4 lg:mx-12 lg:p-2 w-full flex justify-center">
             <div className="container p-4 lg:p-10 mx-auto text-blue-400 bg-gray-200 rounded-lg">
-                <h2 className="mb-5 text-3xl text-center font-semibold text-green-600 leading-tight  -mt-6">Manage Registered Camps ({participantData.length})</h2>
+                <h2 className="mb-5 text-3xl text-center font-semibold text-green-600 leading-tight  -mt-6">Registered Camps ({participantData.length})</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-sm">
                         <colgroup>
@@ -50,7 +44,7 @@ const RegisteredCamps = () => {
                                     </td>
 
                                     <td className="p-3 text-center">
-                                        <Link to ='/dashboard/payment'><button className="px-3 py-1 font-semibold rounded-md border-b border-bg-violet-400 text-gray-400">Pay</button></Link>
+                                        <Link to ={`/dashboard/payment/${camp._id}`}><button className="px-3 py-1 font-semibold rounded-md border-b border-bg-violet-400 text-gray-400">Pay</button></Link>
                                     </td>
                                     <td className="p-3 text-center">
                                         <p>Confirmed</p>
