@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 
 
@@ -49,7 +50,7 @@ const RegisteredCamps = () => {
                                     </td>
 
                                     <td className="p-3 text-center">
-                                        <button className="px-3 py-1 font-semibold rounded-md border-b border-bg-violet-400 text-gray-400">Pay</button>
+                                        <Link to ='/dashboard/payment'><button className="px-3 py-1 font-semibold rounded-md border-b border-bg-violet-400 text-gray-400">Pay</button></Link>
                                     </td>
                                     <td className="p-3 text-center">
                                         <p>Confirmed</p>

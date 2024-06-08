@@ -6,7 +6,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const Dashboard = () => {
     const isAdin = false;
     return (
-        <div className="bg-green-300           ">
+        <div className="bg-green-200           ">
             <div className="flex px-4 mx-24 ">
                 <div className="w-3/12 h-screen bg-green-800 p-6 pt-12 text-slate-200">
                     <ul>
