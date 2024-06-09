@@ -11,7 +11,8 @@ import { TbListDetails } from "react-icons/tb";
 
 
 const Details = () => {
-    const camps = useLoaderData();
+    const loaderCamps = useLoaderData();
+    const camps = loaderCamps.camps
     const { id } = useParams();
     const detailsCamp = camps.find(camp => camp._id == id);
     return (

@@ -44,13 +44,13 @@ const Navbar = () => {
         }
     </>
     return (
-        <div className=" lg:p-2 bg-green-300 sticky top-0 z-50">
+        <div className=" lg:p-2 bg-green-300/80 sticky top-0 z-50">
             <div className="text-center p-4 lg:mx-24">
                 <header className="p-3">
-                    <div className="container flex justify-between h-12 mx-auto ">
+                    <div className="container flex items-center justify-between h-6 mx-auto">
                         <Link to="/">
-                            <div className="flex flex-col justify-center items-center gap-1 -mt-12 lg:-mt-16">
-                                <img className="h-28 lg:h-36 relative p-2" src="logo2.png" alt="" />
+                            <div className="flex flex-col justify-center items-center gap-1 -mt-12 lg:-mt-8">
+                                <img className="h-20 lg:h-24 relative p-2" src="logo2.png" alt="" />
                                 <h1 className="absolute bottom-2 lg:bottom-0 font-bold lg:text-3xl p-3">Medi<span className="text-red-600 ">Care</span></h1>
                             </div>
                         </Link>

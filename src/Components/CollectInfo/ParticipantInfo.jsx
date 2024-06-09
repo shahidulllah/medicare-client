@@ -7,7 +7,8 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const ParticipantInfo = () => {
     const axiosPublic = useAxiosPublic()
-    const camps = useLoaderData();
+    const loaderCamps = useLoaderData();
+    const camps = loaderCamps.camps
     const {id} = useParams();
     const detailsCamp = camps.find(camp => camp._id == id);
 
