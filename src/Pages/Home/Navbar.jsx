@@ -36,7 +36,12 @@ const Navbar = () => {
     const navlinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/availableCamps'>Available Camps</NavLink></li>
-        <li><NavLink to='/join'>Join Us</NavLink></li>
+        {
+            !user &&
+            <>
+                <li><NavLink to='/joinUs'>Join Us</NavLink></li>
+            </>
+        }
     </>
     return (
         <div className=" lg:p-2 bg-green-300 sticky top-0 z-50">
@@ -71,13 +76,7 @@ const Navbar = () => {
                             </div>
 
                             <div>
-                                {
-                                    !user &&
-                                    <>
-                                        <NavLink to='/register'> <button className="self-center btn-ghost px-3 py-1 mr-4 font-semibold rounded">Register</button></NavLink>
-                                        <NavLink to='/login'> <button className="self-center btn-ghost px-3 py-1  font-semibold rounded">Login</button></NavLink>
-                                    </>
-                                }
+
                             </div>
 
                             {
@@ -94,7 +93,7 @@ const Navbar = () => {
                                             <div className="font-bold">
                                                 <h1 className="border-b border-green-600 p-2 text-lg">{user?.displayName}</h1>
                                             </div>
-                                            
+
                                             <Link to="/dashboard"> <li className="border-green-500 border-b"><button>Dashboard</button></li></Link>
                                             <li><button onClick={handleLogOut}>Log Out</button></li>
                                         </ul>

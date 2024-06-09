@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../Pages/Error Page/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Root from "../Root/Root";
-import Login from "../Pages/LoginPage/Login";
 import Register from "../Pages/RegisterPage/Register";
 import Details from "../Pages/DetailsPage/Details";
 import ParticipantInfo from "../Components/CollectInfo/ParticipantInfo";
@@ -18,6 +17,7 @@ import ManageRegisteredCamps from "../Pages/Dashboard/ManageRegisteredCamps";
 import RegisteredCamps from "../Pages/Dashboard/UserDashboard/RegisteredCamps";
 import Payment from "../Pages/Dashboard/UserDashboard/Payment";
 import PaymentHistory from "../Pages/Dashboard/UserDashboard/PaymentHistory";
+import JoinUsPage from "../Pages/LoginPage/JoinUsPage";
 
 
 export const router = createBrowserRouter([
@@ -48,8 +48,8 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: "/login",
-        element: <Login></Login>
+        path: "/joinUs",
+        element: <JoinUsPage></JoinUsPage>
     },
     {
         path: "/register",

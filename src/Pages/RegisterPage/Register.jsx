@@ -112,7 +112,7 @@ const Register = () => {
                     </div>
                     <button type="submit" className="btn bg-green-600 hover:bg-green-500 border-none w-full px-8 py-3 text-xl font-bold rounded-md dark:bg-violet-600 dark:text-gray-50">Register</button>
                 </form>
-                <p className="text-sm text-center dark:text-gray-600 mt-3">Already have an account? <Link to='/login'><span className="text-green-600 font-bold">Login</span> here.</Link>
+                <p className="text-sm text-center dark:text-gray-600 mt-3">Already have an account? <Link to='/joinUs'><span className="text-green-600 font-bold">Login</span> here.</Link>
                 </p>
             </div>
         </div>
