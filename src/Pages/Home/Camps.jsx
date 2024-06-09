@@ -22,7 +22,8 @@ const Camps = () => {
     useEffect(() => {
         axiosSecure.get(`/camps?page=${currentPage}&size=${campsPerPage}`)
             .then(res => {
-                setCampData(res.data.camps);
+                const popularCamps = res.data.camps.sort((a, b) => b.ParticipantCount - a.ParticipantCount);
+                setCampData(popularCamps);
                 setTotalCamps(res.data.totalCamps);
             });
     }, [currentPage, campsPerPage, axiosSecure]);

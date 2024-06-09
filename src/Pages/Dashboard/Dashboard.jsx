@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 
 const Dashboard = () => {
-    const isAdin = false;
+    const isAdin = true;
     return (
         <div className="bg-green-200           ">
             <div className="flex px-4 mx-24 ">
