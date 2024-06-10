@@ -12,39 +12,14 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 const Camps = () => {
     const [campData, setCampData] = useState([]);
     const axiosSecure = useAxiosSecure();
-    const [totalCamps, setTotalCamps] = useState(0);
-    const [campsPerPage, setCampsPerPage] = useState(10);
-    const [currentPage, setCurrentPage] = useState(0);
-
-   const numberOfPages = Math.ceil(totalCamps / campsPerPage);
-    const pages = [...Array(numberOfPages).keys()];
 
     useEffect(() => {
-        axiosSecure.get(`/camps?page=${currentPage}&size=${campsPerPage}`)
+        axiosSecure.get(`/camps`)
             .then(res => {
-                const popularCamps = res.data.camps.sort((a, b) => b.ParticipantCount - a.ParticipantCount);
+                const popularCamps = res.data.camps.sort((a, b) => b.ParticipantCount - a.ParticipantCount).slice(0, 6);
                 setCampData(popularCamps);
-                setTotalCamps(res.data.totalCamps);
             });
-    }, [currentPage, campsPerPage, axiosSecure]);
-
-    const handleCampsPerPage = e =>{
-        const intPage = parseInt(e.target.value);
-        setCampsPerPage(intPage);
-        setCurrentPage(0);
-    }
-
-    const handlePreviousPage = () =>{
-        if(currentPage > 0){
-            setCurrentPage(currentPage -1);
-        }
-    }
-
-    const handleNextPage = () =>{
-        if(currentPage < numberOfPages -1){
-            setCurrentPage(currentPage + 1);
-        }
-    }
+    }, [axiosSecure]);
 
     return (
         <div>
@@ -89,23 +64,8 @@ const Camps = () => {
                 }
             </div>
 
-            {/* Pagination */}
-            <div className="flex justify-center p-12">
-               
-                <button onClick={handlePreviousPage} className="px-5 m-2 btn">Previous</button>
-                {
-                    pages.map(page => <button onClick={()=> setCurrentPage(page)} className={`${currentPage === page && 'bg-green-300 hover:bg-green-400'} px-5 m-2 btn`} key={page}>{page + 1}</button>)
-                }
-                 <button onClick={handleNextPage} className="px-5 m-2 btn">Next</button>
-                <select onChange={handleCampsPerPage} value={campsPerPage} className="px- border" name="" id="">
-                    <option value="6">6</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option value="40">40</option>
-                    <option value="50">50</option>
-                </select>
+            <div className="pb-8  flex justify-center">
+                <Link to='/availableCamps'><button className="btn text-green-600 font-semibold text-lg font-roboto">See All Camps...</button></Link>
             </div>
         </div>
 

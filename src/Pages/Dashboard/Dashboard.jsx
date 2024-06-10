@@ -1,17 +1,18 @@
 import { FaAddressBook, FaCampground, FaHome } from "react-icons/fa";
 import { FaManatSign, FaPersonRifle } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../Hooks/useAdmin";
 
 
 const Dashboard = () => {
-    const isAdin = true;
+    const [isAdmin] = useAdmin();
     return (
         <div className="bg-green-200           ">
             <div className="flex px-4 mx-24 ">
                 <div className="w-3/12 h-screen bg-green-800 p-6 pt-12 text-slate-200">
                     <ul>
                         {
-                            isAdin ? <>
+                            isAdmin ? <>
                                 <div className="font-bold text-xl py-2 border-b mb-7 w-10/12">
                                     <h1>Organizer Dashboard</h1>
                                 </div>
@@ -26,7 +27,7 @@ const Dashboard = () => {
                             Home</li></NavLink>
 
                         {
-                            isAdin ?
+                            isAdmin ?
                                 <>
                                     <NavLink to="/dashboard/organizerProfile"><li className="flex items-center gap-2 my-2">
                                         <FaPersonRifle></FaPersonRifle>

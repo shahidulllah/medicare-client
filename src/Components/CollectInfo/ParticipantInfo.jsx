@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -7,13 +7,12 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const ParticipantInfo = () => {
     const axiosPublic = useAxiosPublic()
-    const loaderCamps = useLoaderData();
-    const camps = loaderCamps.camps
-    const {id} = useParams();
-    const detailsCamp = camps.find(camp => camp._id == id);
+    const detailsCamp = useLoaderData();
+    // const camps = loaderCamps.camps
+    // const {id} = useParams();
+    // const detailsCamp = camps.find(camp => camp._id == id);
 
     const {user} = useContext(AuthContext)
-    console.log(camps);
     const { CampName, HealthcareProfessional, Location, CampFees } = detailsCamp;
     const navigate = useNavigate();
 

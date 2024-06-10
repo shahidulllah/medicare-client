@@ -1,4 +1,4 @@
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import {
     Card,
     CardHeader,
@@ -11,10 +11,8 @@ import { TbListDetails } from "react-icons/tb";
 
 
 const Details = () => {
-    const loaderCamps = useLoaderData();
-    const camps = loaderCamps.camps
-    const { id } = useParams();
-    const detailsCamp = camps.find(camp => camp._id == id);
+    const detailsCamp = useLoaderData();
+    console.log(detailsCamp);
     return (
         <div className="flex justify-center my-16">
             <Card className="w-full max-w-[60rem] flex-row shadow-2xl bg-green-100">

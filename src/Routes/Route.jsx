@@ -33,12 +33,12 @@ export const router = createBrowserRouter([
             {
                 path: "/details/:id",
                 element: <Details></Details>,
-                loader: () => fetch(`${import.meta.env.VITE_API_URL}/camps`)
+                loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/camps/${params.id}`)
             },
             {
                 path: "/participentInfo/:id",
                 element: <ParticipantInfo></ParticipantInfo>,
-                loader: () => fetch(`${import.meta.env.VITE_API_URL}/camps`)
+                loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/camps/${params.id}`)
             },
             {
                 path: "/availableCamps",
@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: "/joinUs",
+        path: "/login",
         element: <JoinUsPage></JoinUsPage>
     },
     {

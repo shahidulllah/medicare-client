@@ -39,7 +39,7 @@ const Navbar = () => {
         {
             !user &&
             <>
-                <li><NavLink to='/joinUs'>Join Us</NavLink></li>
+                <li><NavLink to='/login'>Join Us</NavLink></li>
             </>
         }
     </>
