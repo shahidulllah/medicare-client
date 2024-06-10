@@ -46,7 +46,7 @@ const Available = () => {
     }
 
     return (
-        <div>
+        <div className="p-4 lg:mx-20">
             <SectionTitle
                 heading={"Available Medical Camps"}
                 description={'Objectively optimize intermandated quality vectors after efficient expertise. Competently architect multidisciplinary "outside the box" thinking before cooperative users. Appropriately promote fully.'}

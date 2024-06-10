@@ -7,9 +7,9 @@ import useAdmin from "../../Hooks/useAdmin";
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     return (
-        <div className="bg-green-200           ">
-            <div className="flex px-4 mx-24 ">
-                <div className="w-3/12 h-screen bg-green-800 p-6 pt-12 text-slate-200">
+        <div className="bg-green-200">
+            <div className="flex">
+                <div className="w-3/12 h-screen bg-green-800  lg:p-16 pt-12 text-slate-200">
                     <ul>
                         {
                             isAdmin ? <>
@@ -17,7 +17,7 @@ const Dashboard = () => {
                                     <h1>Organizer Dashboard</h1>
                                 </div>
                             </> : <>
-                                <div className="font-bold text-xl py-2 border-b mb-7 w-11/12">
+                                <div className="font-bold font-roboto text-xl py-2 border-b mb-7 w-11/12">
                                     <h1>Participant Dashboard</h1>
                                 </div>
                             </>

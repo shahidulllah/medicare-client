@@ -28,7 +28,7 @@ const Analytics = () => {
     };
 
     return (
-        <div className='flex justify-center items-center w-full h-full'>
+        <div className='flex  p-4 lg:p-5 justify-center items-center w-full h-full'>
             <BarChart className='bg-green-200 ' 
                 width={900}
                 height={400}

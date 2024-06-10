@@ -4,8 +4,8 @@
 
 const Banner = () => {
     return (
-        <div className="mt- mb-16">
-            <div className="carousel w-full rounded-b-xl h-[40vh] lg:h-[85vh] rounded-2xl">
+        <div className="mb-16">
+            <div className="carousel w-full rounded-b-xl h-[40vh] lg:h-[85vh]">
                 <div id="slide1" className="carousel-item relative w-full  ">
 
                     {/* title */}

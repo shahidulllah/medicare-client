@@ -18,9 +18,9 @@ const PaymentHistory = () => {
     })
    
     return (
-        <div className="p-4 lg:mx-12 lg:p-2 w-full flex justify-center">
+        <div className="p-4  lg:p-12 w-full flex justify-center">
             <div className="container p-4 lg:p-10 mx-auto text-blue-400 bg-gray-200 rounded-lg">
-                <h2 className="mb-5 text-3xl text-center font-semibold text-green-600 leading-tight  -mt-6">Payment History</h2>
+                <h2 className="mb-5 text-3xl text-center font-semibold text-green-600 leading-tight  -mt-6">Payment History ({payments.length})</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-sm">
                         <colgroup>

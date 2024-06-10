@@ -16,13 +16,13 @@ const Camps = () => {
     useEffect(() => {
         axiosSecure.get(`/camps`)
             .then(res => {
-                const popularCamps = res.data.camps.sort((a, b) => b.ParticipantCount - a.ParticipantCount).slice(0, 6);
+                const popularCamps = res?.data?.camps?.sort((a, b) => b.ParticipantCount - a.ParticipantCount).slice(0, 6);
                 setCampData(popularCamps);
             });
     }, [axiosSecure]);
 
     return (
-        <div>
+        <div className="p-4 lg:mx-20">
             <SectionTitle
                 heading={"Popular Medical Camps"}
                 description={'Objectively optimize intermandated quality vectors after efficient expertise. Competently architect multidisciplinary "outside the box" thinking before cooperative users. Appropriately promote fully.'}
