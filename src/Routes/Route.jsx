@@ -59,12 +59,14 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+            // user
+            {
+                path: "/dashboard/userProfile",
+                element: <Profile></Profile>,
+            },
 
             // Organizer
-            {
-                path: "/dashboard/organizerProfile",
-                element: <Profile></Profile>
-            },
+           
             {
                 path: "/dashboard/addCamp",
                 element: <AddCamp></AddCamp>
@@ -84,10 +86,7 @@ export const router = createBrowserRouter([
             },
             
             // Participants
-            {
-                path: "/dashboard/participantProfile",
-                element: <Profile></Profile>
-            },
+           
             {
                 path: "/dashboard/analytics",
                 element: <Analytics></Analytics>
@@ -97,7 +96,7 @@ export const router = createBrowserRouter([
                 element: <RegisteredCamps></RegisteredCamps>
             },
             {
-                path: "/dashboard/payment/:id",
+                path: "/dashboard/payment",
                 element: <Payment></Payment>
             },
             {

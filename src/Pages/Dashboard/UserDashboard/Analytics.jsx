@@ -8,7 +8,6 @@ const Analytics = () => {
     const axiosPublic = useAxiosPublic();
     axiosPublic.get('/participants')
         .then(res => {
-            console.log(res.data);
             setParticipantData(res.data)
         })
 

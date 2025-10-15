@@ -2,9 +2,13 @@ import { FaAddressBook, FaCampground, FaHome } from "react-icons/fa";
 import { FaManatSign, FaPersonRifle } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
+import { useContext } from "react";
+import { AuthContext } from "../../Components/AuthProvider/AuthProvider";
 
 
-const Dashboard = () => {
+
+const Dashboard = () => { 
+    const {user} = useContext(AuthContext);
     const [isAdmin] = useAdmin();
     return (
         <div className="bg-green-200">
@@ -22,6 +26,7 @@ const Dashboard = () => {
                                 </div>
                             </>
                         }
+
                         <NavLink to="/"><li className="flex items-center gap-2 my-2">
                             <FaHome></FaHome>
                             Home</li></NavLink>
@@ -29,7 +34,7 @@ const Dashboard = () => {
                         {
                             isAdmin ?
                                 <>
-                                    <NavLink to="/dashboard/organizerProfile"><li className="flex items-center gap-2 my-2">
+                                    <NavLink to={`/dashboard/userProfile`}><li className="flex items-center gap-2 my-2">
                                         <FaPersonRifle></FaPersonRifle>
                                         Organizer Profile</li></NavLink>
 
@@ -54,7 +59,7 @@ const Dashboard = () => {
                                         Analytics</li>
                                     </NavLink>
 
-                                    <NavLink to="/dashboard/participantProfile"><li className="flex items-center gap-2 my-2">
+                                    <NavLink to={`/dashboard/userProfile`}><li className="flex items-center gap-2 my-2">
                                         <FaPersonRifle></FaPersonRifle>
                                         Participant Profile</li></NavLink>
 

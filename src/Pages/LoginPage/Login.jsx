@@ -5,9 +5,11 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../Components/AuthProvider/AuthProvider";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
-const JoinUsPage = () => {
+
+
+const Login = () => {
     const axiosPublic = useAxiosPublic();
-    const { loginUser, googleLogin } = useContext(AuthContext);
+    const {loginUser, googleLogin} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const [showPassword, setShowPassword] = useState(false);
@@ -44,16 +46,16 @@ const JoinUsPage = () => {
                 console.log(result.user);
                 const userData = {
                     email: result.user?.email,
-                    name: result.user?.displayName,
-                    photo: result.user?.photoURL
+                    name: result.user?.displayName
                 }
                 axiosPublic.post('/users', userData)
-                    .then(res => {
-                        console.log(res.data);
-                        navigate(location?.state ? location.state : '/');
-                    })
+                .then(res => {
+                    console.log(res.data);
+                    navigate(location?.state ? location.state : '/');
+                })  
             })
     }
+
 
     return (
         <div className="flex justify-center p-10 bg-green-300/35">
@@ -61,7 +63,7 @@ const JoinUsPage = () => {
                 <h2 className="mb-3 text-3xl font-bold text-center">Login to your account</h2>
                 <p className="text-sm text-center dark:text-gray-600">Dont have account? <Link to='/register'><span className="text-green-600 font-bold">Register</span> here.</Link>
                 </p>
-
+                
                 <form onSubmit={handleLogin} noValidate="" action="" className="space-y-8 mt-7">
                     <div className="space-y-4 mb-7">
                         <div className="space-y-2">
@@ -81,7 +83,7 @@ const JoinUsPage = () => {
                             </div>
                             <div>
                                 {
-                                    loginError && <p className="text-red-600 font-semibold">{loginError}</p>
+                                    loginError&& <p className="text-red-600 font-semibold">{loginError}</p>
                                 }
                             </div>
                         </div>
@@ -104,7 +106,7 @@ const JoinUsPage = () => {
                     </button>
                     <button aria-label="Login with Facebook" role="button" className="flex items-center justify-center w-full p-4 space-x-4 border border-green-500 rounded-md focus:ring-2 focus:ring-offset-1 dark:border-green-600 focus:dark:ring-violet-600">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5 fill-current">
-                            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+                           <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
                         </svg>
                         <p>Login with Facebook</p>
                     </button>
@@ -114,4 +116,4 @@ const JoinUsPage = () => {
     );
 };
 
-export default JoinUsPage;
+export default Login;

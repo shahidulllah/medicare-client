@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Components/AuthProvider/AuthProvider";
+import useUser from "../../Hooks/useUser";
 
 
 
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const {logOut, user } = useContext(AuthContext);
+    const {User} = useUser()
     const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
 
     useEffect(() => {
@@ -84,14 +86,14 @@ const Navbar = () => {
                                 <>
                                     <div className="dropdown dropdown-end">
                                         <div tabIndex={0} role="butto" className="btn btn-ghost btn-circle">
-                                            <div className="w-12 tooltip" title={user?.displayName
+                                            <div className="w-12 tooltip" title={User?.name
                                             }>
-                                                <img src={user?.photoURL || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"} className="rounded-full" alt="" />
+                                                <img src={User?.photo || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"} className="rounded-full" alt="" />
                                             </div>
                                         </div>
                                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-lg bg-green-300/70 rounded-box w-52">
                                             <div className="font-bold">
-                                                <h1 className="border-b border-green-600 p-2 text-lg">{user?.displayName}</h1>
+                                                <h1 className="border-b border-green-600 p-2 text-lg">{User?.name}</h1>
                                             </div>
 
                                             <Link to="/dashboard"> <li className="border-green-500 border-b"><button>Dashboard</button></li></Link>
@@ -112,10 +114,10 @@ const Navbar = () => {
                                     {
                                         user && <div className="flex flex-col items-center justify-center">
                                             <div className=" w-9 mb-2 ">
-                                                <img className="rounded-full" src={user?.photoURL || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"} />
+                                                <img className="rounded-full" src={user?.photo || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"} />
                                             </div>
                                             <div className="text-center font-serif mb-3 border-b-">
-                                                <h1 className="font-semibold">{user?.displayName}</h1>
+                                                <h1 className="font-semibold">{user?.name}</h1>
                                             </div>
                                         </div>
                                     }
