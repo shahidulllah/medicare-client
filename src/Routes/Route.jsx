@@ -19,90 +19,95 @@ import Payment from "../Pages/Dashboard/UserDashboard/Payment";
 import PaymentHistory from "../Pages/Dashboard/UserDashboard/PaymentHistory";
 import JoinUsPage from "../Pages/LoginPage/JoinUsPage";
 
-
 export const router = createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
         path: "/",
-        element: <Root></Root>,
-        errorElement: <ErrorPage></ErrorPage>,
-        children: [
-            {
-                path: "/",
-                element: <Home></Home>
-            },
-            {
-                path: "/details/:id",
-                element: <Details></Details>,
-                loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/camps/${params.id}`)
-            },
-            {
-                path: "/participentInfo/:id",
-                element: <ParticipantInfo></ParticipantInfo>,
-                loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/camps/${params.id}`)
-            },
-            {
-                path: "/availableCamps",
-                element: <Available></Available>,
-                loader: () => fetch(`${import.meta.env.VITE_API_URL}/camps`)
-            },
-        ]
-    },
-    {
-        path: "/login",
-        element: <JoinUsPage></JoinUsPage>
-    },
-    {
-        path: "/register",
-        element: <Register></Register>
-    },
-    {
-        path: "/dashboard",
-        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-        children: [
-            // user
-            {
-                path: "/dashboard/userProfile",
-                element: <Profile></Profile>,
-            },
+        element: <Home></Home>,
+      },
+      {
+        path: "/details/:id",
+        element: <Details></Details>,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/camps/${params.id}`),
+      },
+      {
+        path: "/participentInfo/:id",
+        element: <ParticipantInfo></ParticipantInfo>,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/camps/${params.id}`),
+      },
+      {
+        path: "/availableCamps",
+        element: <Available></Available>,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/camps`),
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <JoinUsPage></JoinUsPage>,
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      // user
+      {
+        path: "/dashboard/userProfile",
+        element: <Profile></Profile>,
+      },
 
-            // Organizer
-           
-            {
-                path: "/dashboard/addCamp",
-                element: <AddCamp></AddCamp>
-            },
-            {
-                path: "/dashboard/manageCamps",
-                element: <ManageCamps></ManageCamps>
-            },
-            {
-                path: "/dashboard/updateCamp/:id",
-                element: <UpdateCamp></UpdateCamp>,
-                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/camps/${params.id}`)
-            },
-            {
-                path: "/dashboard/manageRegCamps",
-                element: <ManageRegisteredCamps></ManageRegisteredCamps>
-            },
-            
-            // Participants
-           
-            {
-                path: "/dashboard/analytics",
-                element: <Analytics></Analytics>
-            },
-            {
-                path: "/dashboard/registeredCamps",
-                element: <RegisteredCamps></RegisteredCamps>
-            },
-            {
-                path: "/dashboard/payment",
-                element: <Payment></Payment>
-            },
-            {
-                path: "/dashboard/paymentHistory",
-                element: <PaymentHistory></PaymentHistory>
-            },
-        ]
-    },
-])
+      // Organizer
+      {
+        path: "/dashboard/addCamp",
+        element: <AddCamp></AddCamp>,
+      },
+      {
+        path: "/dashboard/manageCamps",
+        element: <ManageCamps></ManageCamps>,
+      },
+      {
+        path: "/dashboard/updateCamp/:id",
+        element: <UpdateCamp></UpdateCamp>,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/camps/${params.id}`),
+      },
+      {
+        path: "/dashboard/manageRegCamps",
+        element: <ManageRegisteredCamps></ManageRegisteredCamps>,
+      },
+
+      // Participants
+
+      {
+        path: "/dashboard/analytics",
+        element: <Analytics></Analytics>,
+      },
+      {
+        path: "/dashboard/registeredCamps",
+        element: <RegisteredCamps></RegisteredCamps>,
+      },
+      {
+        path: "/dashboard/payment",
+        element: <Payment></Payment>,
+      },
+      {
+        path: "/dashboard/paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+    ],
+  },
+]);
