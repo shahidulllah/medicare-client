@@ -17,6 +17,7 @@ const AdminRoute = ({ children }) => {
     );
   }
 
+  //Checking admin
   if (user && isAdmin) {
     return children;
   }
