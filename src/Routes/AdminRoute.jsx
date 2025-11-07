@@ -8,6 +8,7 @@ const AdminRoute = ({ children }) => {
   const [isAdmin, isAdminLoading] = useAdmin();
   const location = useLocation();
 
+  //Check loading..
   if (loading || isAdminLoading) {
     return (
       <div className="text-center p-16">
